@@ -1,0 +1,141 @@
+
+<div class="orders-page">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div>
+      <h2>Orders</h2>
+      <p>Manage and track all your customer orders.</p>
+    </div>
+
+    <button class="export-btn">
+      <i class="bi bi-download"></i>
+      Export Orders
+    </button>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="summary-grid">
+
+    <div class="summary-card">
+      <div>
+        <p>Total Orders</p>
+        <h3>{{ totalOrders }}</h3>
+      </div>
+      <div class="summary-icon purple">
+        <i class="bi bi-bag"></i>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div>
+        <p>Pending Orders</p>
+        <h3>{{ pendingOrders }}</h3>
+      </div>
+      <div class="summary-icon orange">
+        <i class="bi bi-clock"></i>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div>
+        <p>Completed Orders</p>
+        <h3>{{ completedOrders }}</h3>
+      </div>
+      <div class="summary-icon green">
+        <i class="bi bi-check-circle"></i>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div>
+        <p>Cancelled Orders</p>
+        <h3>{{ cancelledOrders }}</h3>
+      </div>
+      <div class="summary-icon red">
+        <i class="bi bi-x-circle"></i>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Orders Table -->
+  <div class="orders-section">
+
+    <div class="section-header">
+      <div>
+        <h3>All Orders</h3>
+        <p>View and manage your recent orders.</p>
+      </div>
+
+      <span>{{ totalOrders }} Orders</span>
+    </div>
+
+    <div class="table-responsive">
+      <table class="orders-table">
+
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Payment</th>
+            <th>Order Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (order of orders; track order.id) {
+            <tr>
+
+              <td class="order-id">#{{ order.id }}</td>
+
+              <td>
+                <div class="customer-info">
+                  <strong>{{ order.customer }}</strong>
+                  <span>{{ order.email }}</span>
+                </div>
+              </td>
+
+              <td>{{ order.date }}</td>
+
+              <td class="amount">${{ order.amount }}</td>
+
+              <td>
+                <span class="status-badge"
+                  [class.paid]="order.payment === 'Paid'"
+                  [class.payment-pending]="order.payment === 'Pending'"
+                  [class.failed]="order.payment === 'Failed'">
+                  {{ order.payment }}
+                </span>
+              </td>
+
+              <td>
+                <span class="status-badge"
+                  [class.delivered]="order.status === 'Delivered'"
+                  [class.pending]="order.status === 'Pending'"
+                  [class.processing]="order.status === 'Processing'"
+                  [class.shipped]="order.status === 'Shipped'"
+                  [class.cancelled]="order.status === 'Cancelled'">
+                  {{ order.status }}
+                </span>
+              </td>
+
+              <td>
+                <button class="action-btn" title="View Order">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </td>
+
+            </tr>
+          }
+        </tbody>
+
+      </table>
+    </div>
+
+  </div>
+
+</div>

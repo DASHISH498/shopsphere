@@ -1,0 +1,148 @@
+
+<div class="customers-page">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div>
+      <h2>Customers</h2>
+      <p>Manage and view your store customers.</p>
+    </div>
+
+    <button class="add-customer-btn">
+      <i class="bi bi-plus-lg"></i>
+      Add Customer
+    </button>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="summary-grid">
+
+    <div class="summary-card">
+      <div>
+        <p>Total Customers</p>
+        <h3>{{ totalCustomers }}</h3>
+      </div>
+      <div class="summary-icon purple">
+        <i class="bi bi-people"></i>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div>
+        <p>Active Customers</p>
+        <h3>{{ activeCustomers }}</h3>
+      </div>
+      <div class="summary-icon green">
+        <i class="bi bi-person-check"></i>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div>
+        <p>New Customers</p>
+        <h3>{{ newCustomers }}</h3>
+      </div>
+      <div class="summary-icon blue">
+        <i class="bi bi-person-plus"></i>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div>
+        <p>Inactive Customers</p>
+        <h3>{{ inactiveCustomers }}</h3>
+      </div>
+      <div class="summary-icon red">
+        <i class="bi bi-person-x"></i>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Customer List -->
+  <div class="customers-section">
+
+    <div class="section-header">
+      <div>
+        <h3>All Customers</h3>
+        <p>View and manage your registered customers.</p>
+      </div>
+
+      <span>{{ totalCustomers }} Customers</span>
+    </div>
+
+    <!-- Search and Filter -->
+    <div class="table-toolbar">
+      <div class="search-box">
+        <i class="bi bi-search"></i>
+        <input type="text" placeholder="Search customers..." />
+      </div>
+
+      <button class="filter-btn">
+        <i class="bi bi-funnel"></i>
+        Filter
+      </button>
+    </div>
+
+    <!-- Customers Table -->
+    <div class="table-responsive">
+      <table class="customers-table">
+
+        <thead>
+          <tr>
+            <th>Customer</th>
+            <th>Phone</th>
+            <th>Location</th>
+            <th>Orders</th>
+            <th>Total Spent</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (customer of customers; track customer.id) {
+            <tr>
+
+              <td>
+                <div class="customer-profile">
+                  <img [src]="customer.image" [alt]="customer.name" />
+                  <div>
+                    <strong>{{ customer.name }}</strong>
+                    <span>{{ customer.email }}</span>
+                  </div>
+                </div>
+              </td>
+
+              <td>{{ customer.phone }}</td>
+
+              <td>{{ customer.location }}</td>
+
+              <td>{{ customer.orders }}</td>
+
+              <td class="amount">${{ customer.spent }}</td>
+
+              <td>
+                <span class="status-badge"
+                  [class.active]="customer.status === 'Active'"
+                  [class.inactive]="customer.status === 'Inactive'">
+                  {{ customer.status }}
+                </span>
+              </td>
+
+              <td>
+                <button class="action-btn" title="View Customer">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </td>
+
+            </tr>
+          }
+        </tbody>
+
+      </table>
+    </div>
+
+  </div>
+
+</div>

@@ -15,5 +15,13 @@ export const routes: Routes = [
     {
         path: 'categories',
         component: Categories,
+    },
+    {
+        path: 'orders',
+        loadComponent: () => import('./features/orders/orders').then(m => m.Orders),
+    },
+    {
+        path: 'customers',
+        loadComponent: () => import('./features/customers/customers').then(m => m.Customers),
     }
 ];
