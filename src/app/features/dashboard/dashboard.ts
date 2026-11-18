@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProductService, Product } from '../../core/services/product.service';
 
 @Component({
   imports: [],
@@ -7,6 +8,13 @@ import { Component } from '@angular/core';
   templateUrl: './dashboard.html',
 })
 export class Dashboard {
+
+  products: Product[] = [];
+  
+  constructor(private productService: ProductService) {
+    this.products = this.productService.getProducts();
+  }
+
   stats = [
     {
       title: 'Total Products',
@@ -32,13 +40,5 @@ export class Dashboard {
       icon: 'bi-exclamation-circle',
       color: 'orange'
     }
-  ];
-  
-  products = [
-    { id: 1, name: 'Wireless Headphones', category: 'Electronics', price: '$10', stock: 50, status: 'Active' },
-    { id: 2, name: 'Cotton T-Shirt', category: 'Clothing', price: '$15', stock: 30, status: 'Active' },
-    { id: 3, name: 'Coffee Maker', category: 'Home', price: '$20', stock: 20, status: 'Inactive' },
-    { id: 4, name: 'Yoga Mat', category: 'Sports', price: '$25', stock: 10, status: 'Active' },
-    { id: 5, name: 'Python Programming Book', category: 'Books', price: '$30', stock: 5, status: 'Inactive' }
   ];
 }

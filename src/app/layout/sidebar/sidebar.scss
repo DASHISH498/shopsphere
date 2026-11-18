@@ -33,7 +33,7 @@
   list-style: none;
   padding: 0;
 
-  li {
+  a {
     display: flex;
     align-items: center;
     gap: 13px;
@@ -43,6 +43,7 @@
     border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
+    text-decoration: none;
 
     i {
       font-size: 18px;
