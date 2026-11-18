@@ -1,0 +1,67 @@
+<div class="dashboard">
+  <div class="page-heading">
+    <div>
+      <h5>Overview</h5>
+      <p>Here's your store performance summary.</p>
+    </div>
+
+    <button class="btn btn-primary">
+      <i class="bi bi-plus-lg"></i>
+      <span>Add Product</span>
+    </button>
+
+    <div class="row g-3 mb-4">
+      @for (item of stats; track item.title) {
+        <div class="col-md-6 col-xl-3">
+          <div class="stat-card">
+            <div>
+              <p>{{ item.title }}</p>
+              <h3>{{ item.value }}</h3>
+            </div>
+
+            <div class="stat-icon" [class]="item.color">
+              <i class="bi" [class]="item.icon"></i>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="product-section">
+      <div class="section-heading">
+        <h5>Recent Products</h5>
+        <button class="btn btn-outline-primary btn-sm">View All</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Price</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (product of products; track product.id) {
+                    <tr>
+                        <td>{{ product.id }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.category }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.stock }}</td>
+                        <td>
+                            <span class="badge" [class]="product.status === 'Active' ? 'bg-success' : 'bg-secondary'">
+                                {{ product.status }}
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
